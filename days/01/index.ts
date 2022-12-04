@@ -1,7 +1,7 @@
 import { data } from './data'
 import { formatString } from '../utils'
 
-const findHighestScore = (data: string) => {
+export const findHighestScore = (data: string) => {
   let total = 0
   let highestScore = []
   const formattedData = formatString(data)
