@@ -8,19 +8,52 @@ pub fn get_data() -> String {
 
 pub fn determine_win(args: &str) {
     let mut hm = HashMap::new();
-
     let formatted = args.split(" ").take(2).collect::<Vec<&str>>();
-
-    if let [opponent, me] = &formatted[..] {
-        let total = hm.get(me);
-        println!("{:?}", total);
-    }
+    let (opponent, me) = (formatted[0], formatted[1]);
 
     hm.insert("X", 1);
     hm.insert("Y", 2);
     hm.insert("Z", 3);
 
-    // println!("{:?}", hm.get("Y"));
+    let total = &mut hm.get(&me);
+
+    if let Some(t) = total {
+        let mut internal_total = &mut t;
+        println!("{:?}", t);
+
+        // Rock
+        if opponent == "A" {
+            if me == "X" {
+                **internal_total += 3;
+            } else if me == "Y" {
+                **internal_total += 6;
+              } else {
+                **internal_total += 0;
+              }
+        }
+
+        // Paper
+        if opponent == "B" {
+            if me == "X" {
+                **internal_total += 0;
+            } else if me == "Y" {
+                **internal_total += 3;
+            } else {
+                **internal_total += 6;
+            }
+        }
+
+        // Scissors
+        if opponent == "C" {
+            if me == "X" {
+                **internal_total += 6;
+            } else if me == "Y" {
+                **internal_total += 0;
+            } else {
+                **internal_total += 3;
+            }
+        }
+    }
 }
 
 fn main() {
