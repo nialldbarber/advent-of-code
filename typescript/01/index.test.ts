@@ -1,4 +1,4 @@
-import { findHighestScore } from './index'
+import { findHighestCalorieCount } from './index'
 
 const inputOne = `1000
 2000
@@ -16,8 +16,8 @@ const inputOne = `1000
 10000
 `
 
-describe('findHighestScore()', () => {
+describe('findHighestCalorieCount()', () => {
   it('should find the highest score of inputOne', () => {
-    expect(findHighestScore(inputOne)).toBe(24000)
+    expect(findHighestCalorieCount(inputOne)).toBe(24000)
   })
 })

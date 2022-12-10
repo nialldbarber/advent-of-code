@@ -6,6 +6,7 @@ import {
   sliceOfData,
   sortedItems,
 } from '../utils'
+import type { FormattedString } from '../utils'
 
 /**
  * First part:
@@ -42,7 +43,7 @@ export const findHighestCalorieCount = (
 ) => {
   let total = 0
   let highestCalorieCount: HighestCalorieCount = []
-  const formattedData = formatString(data)
+  const formattedData: FormattedString = formatString(data)
   for (const item of formattedData) {
     if (item !== '') {
       total += Number(item)
