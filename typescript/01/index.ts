@@ -42,19 +42,19 @@ export const findHighestCalorieCount = (
   range?: Range
 ) => {
   let cumulativeTotal = 0
-  let calroieCountCollection: CalorieCountCollection = []
+  let calorieCountCollection: CalorieCountCollection = []
   const formattedData: FormattedString = formatString(data)
   for (const item of formattedData) {
     if (item !== '') {
       cumulativeTotal += Number(item)
     } else {
-      calroieCountCollection.push(cumulativeTotal)
+      calorieCountCollection.push(cumulativeTotal)
       cumulativeTotal = 0
     }
   }
   const highest = range
-    ? formatAndPickItem(calroieCountCollection, 0, range)
-    : formatAndPickItem(calroieCountCollection, 0)
+    ? formatAndPickItem(calorieCountCollection, 0, range)
+    : formatAndPickItem(calorieCountCollection, 0)
   return highest
 }
 
