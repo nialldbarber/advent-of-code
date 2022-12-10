@@ -1,4 +1,15 @@
-import { formatString, getDataFromFile } from '../utils'
+import {
+  formatString,
+  getDataFromFile,
+  pickItem,
+  sortedItems,
+} from '../utils'
+
+/**
+ * The provided data is split into chunks representing
+ * what each elf is carrying. This task requires you
+ * to find the elf carrying the most amount of calories.
+ */
 
 export const findHighestScore = (data: string) => {
   let total = 0
@@ -12,7 +23,11 @@ export const findHighestScore = (data: string) => {
       total = 0
     }
   }
-  return highestScore.sort((a, z) => z - a)[0]
+  const sortDescending = sortedItems(
+    highestScore,
+    'descending'
+  )
+  return pickItem(sortDescending, 0)
 }
 
 const data = getDataFromFile(__dirname)
