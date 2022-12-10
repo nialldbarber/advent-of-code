@@ -21,11 +21,11 @@ import type { FormattedString } from '../utils'
  * calories, so that there is a backup.
  */
 
-type CalorieCountCollection = number[]
+type CalorieCollection = number[]
 type Range = [number, number]
 
 const formatAndPickItem = (
-  score: CalorieCountCollection,
+  score: CalorieCollection,
   index: number,
   sliceData?: Range
 ): number => {
@@ -42,19 +42,19 @@ export const findHighestCalorieCount = (
   range?: Range
 ) => {
   let cumulativeTotal = 0
-  let calorieCountCollection: CalorieCountCollection = []
+  let calorieCollection: CalorieCollection = []
   const formattedData: FormattedString = formatString(data)
   for (const item of formattedData) {
     if (item !== '') {
       cumulativeTotal += Number(item)
     } else {
-      calorieCountCollection.push(cumulativeTotal)
+      calorieCollection.push(cumulativeTotal)
       cumulativeTotal = 0
     }
   }
   const highest = range
-    ? formatAndPickItem(calorieCountCollection, 0, range)
-    : formatAndPickItem(calorieCountCollection, 0)
+    ? formatAndPickItem(calorieCollection, 0, range)
+    : formatAndPickItem(calorieCollection, 0)
   return highest
 }
 
