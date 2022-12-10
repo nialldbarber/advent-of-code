@@ -31,3 +31,6 @@ export const sliceOfData = (
 
 export const pickItem = (arr: any[], index: number) =>
   arr[index]
+
+export const add = (arr: any[]) =>
+  arr.reduce((item, total) => item + total, 0)
