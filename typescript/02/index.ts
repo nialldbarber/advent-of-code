@@ -1,5 +1,4 @@
-import { data } from './data'
-import { formatString } from '../utils'
+import { formatString, getDataFromFile } from '../utils'
 
 const GAME_MAP: Record<string, number> = {
   X: 1, //'Rock' === +1
@@ -47,7 +46,7 @@ const determineWin = (args: string): number => {
   return total
 }
 
-const findTotalScoreRockPaperScissors = () => {
+const findTotalScoreRockPaperScissors = (data: string) => {
   let total = 0
   const formattedData = formatString(data)
   for (const item of formattedData) {
@@ -57,5 +56,7 @@ const findTotalScoreRockPaperScissors = () => {
 
   return total
 }
-const total = findTotalScoreRockPaperScissors()
+
+const data = getDataFromFile(__dirname)
+const total = findTotalScoreRockPaperScissors(data)
 console.log(total)

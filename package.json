@@ -1,9 +1,11 @@
 {
   "name": "advent-of-code-22",
   "version": "1.0.0",
-  "description": "",
+  "description": "Advent of Code TS/Rust",
   "main": "index.js",
   "scripts": {
+    "test": "jest typescript/",
+    "test:utils": "jest typescript/utils/index.test.ts",
     "day01": "ts-node typescript/01/index.ts",
     "test:day01": "jest typescript/01/index.test.ts",
     "day02": "ts-node typescript/02/index.ts",
@@ -13,8 +15,10 @@
     "day04": "ts-node typescript/04/index.ts",
     "test:day04": "ts-node typescript/04/index.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "advent of code"
+  ],
+  "author": "Niall Barber",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",

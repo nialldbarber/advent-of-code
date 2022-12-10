@@ -1,16 +1,21 @@
-import { formatString } from '../utils'
-import { data } from './data'
+import { formatString, getDataFromFile } from '../utils'
 
 type Case = 'lowercase' | 'uppercase'
 
 const priorityList = () => {
-  const setPriorityList = (typeCase: Case = 'lowercase') => {
+  const setPriorityList = (
+    typeCase: Case = 'lowercase'
+  ) => {
     let priorityList: Record<string, number> = {}
     const alphabet = [...'abcdefghijklmnopqrstuvwxyz']
 
     for (const [index, letter] of alphabet.entries()) {
-      const key = typeCase === 'lowercase' ? letter : letter.toUpperCase()
-      const value = typeCase === 'lowercase' ? index + 1 : index + 27
+      const key =
+        typeCase === 'lowercase'
+          ? letter
+          : letter.toUpperCase()
+      const value =
+        typeCase === 'lowercase' ? index + 1 : index + 27
       priorityList[key] = value
     }
 
@@ -39,5 +44,7 @@ const sumOfPriorities = (data: string) => {
   }
   return total
 }
+
+const data = getDataFromFile(__dirname)
 const total = sumOfPriorities(data)
 console.log(total)

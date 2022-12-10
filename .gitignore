@@ -1,1 +1,7 @@
 node_modules/
+rust/day_01/target/
+rust/day_02/target/
+rust/day_03/target/
+rust/day_04/target/
+rust/day_05/target/
+rust/day_06/target/
