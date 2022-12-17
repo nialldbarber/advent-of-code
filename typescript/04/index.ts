@@ -1,39 +1,33 @@
-import { data } from './data'
-import { formatString } from '../utils'
+import {
+  formatString,
+  FormattedString,
+  getDataFromFile,
+} from '../utils'
 
-const factoryTest = (arr: any[]) => {
-  const test = (arr: any[]) => {
-    let yo = []
-    for (const item of arr) {
-      yo.push({
-        first: item.split('-')[0],
-        last: item.split('-')[1],
-      })
+const splitBy = (str: string, delimeter: string) =>
+  str.split(delimeter)
+
+const findContainingPairsFactory = (data: string) => {
+  const findContainingPairs = (reversed?: boolean) => {
+    let total = 0
+    const formattedString: FormattedString = reversed
+      ? formatString(data).reverse()
+      : formatString(data)
+    for (const item of formattedString) {
+      const [baseCase, testCase] = splitBy(item, ',')
+      const [baseLeft, baseRight] = splitBy(baseCase, '-')
+      const [testLeft, testRight] = splitBy(testCase, '-')
+
+      if (testLeft >= baseLeft && testRight <= baseRight) {
+        total += 1
+      }
     }
-
-    if (
-      yo[0].first >= yo[1].first &&
-      yo[0].last <= yo[1].last
-    ) {
-      return true
-    }
-
-    return false
+    return total
   }
-
-  return test(arr) || test(arr.reverse())
+  return findContainingPairs() + findContainingPairs(true)
 }
 
-export const t = (data: string) => {
-  let total = 0
-  const formatted = formatString(data)
-  for (const item of formatted) {
-    const test = factoryTest(item.split(','))
-    // console.log(item, test)
-    if (test) total += 1
-  }
-  return total
-}
+const data = getDataFromFile(__dirname)
+const outcome = findContainingPairsFactory(data)
 
-const total = t(data)
-console.log(total)
+console.log(outcome)

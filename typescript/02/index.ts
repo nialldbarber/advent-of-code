@@ -6,8 +6,14 @@ const GAME_MAP: Record<string, number> = {
   Z: 3, // 'Scissors' === +3
 }
 
-const determineWin = (args: string): number => {
-  let [opponent, me] = args.split(' ')
+const OUTCOME_MAP = {
+  X: 'lose',
+  Y: 'draw',
+  Z: 'win',
+}
+
+const determineWin = (args: string) => {
+  const [opponent, me] = args.split(' ')
   let total = GAME_MAP[me]
 
   // Rock
