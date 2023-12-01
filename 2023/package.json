@@ -1,0 +1,12 @@
+{
+  "name": "2023",
+  "module": "index.ts",
+  "devDependencies": {
+    "@biomejs/biome": "1.4.1",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module"
+}
