@@ -1,4 +1,4 @@
-export const formatString = (data: string) => data.split(/\r?\n/)
+import { readInputFromFile } from '../lib/read-file'
 
 export function stripNonDigits(value: string | number) {
   if (typeof value === 'string') {
@@ -34,16 +34,6 @@ export function stripNonNumbers(value: string | number) {
 
 export function getBookends(str: string) {
   return `${str.at(0)}${str.at(-1)}`
-}
-
-export async function readInputFromFile() {
-  try {
-    const file = Bun.file('input.txt')
-    const data = await file.text()
-    return formatString(data)
-  } catch (error) {
-    console.error(error)
-  }
 }
 
 async function accumulateValuesPartOne() {
