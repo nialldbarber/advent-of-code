@@ -7,36 +7,27 @@ export function stripNonDigits(value: string | number) {
   return value.toString().replace(/\d+/g, '')
 }
 
-export function stripNonNumbers(value: string | number) {
-  if (typeof value === 'string') {
-    const numberWordsToDigits: Record<string, string> = {
-      one: '1',
-      two: '2',
-      three: '3',
-      four: '4',
-      five: '5',
-      six: '6',
-      seven: '7',
-      oneight: '8',
-      eight: '8',
-      nine: '9',
-    }
-
-    return value.replace(
-      /oneight|one|two|three|four|five|six|seven|eight|nine/gi,
-      (matched) => {
-        return numberWordsToDigits[matched.toLowerCase()]
-      }
-    )
+export function convertNumberStringToNumber(value: string) {
+  const numberMap: Record<string, any> = {
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
   }
-  return value.toString()
+  const regex = new RegExp(Object.keys(numberMap).join('|'), 'g')
+  return value.replace(regex, (match) => numberMap[match])
 }
 
 export function getBookends(str: string) {
   return `${str.at(0)}${str.at(-1)}`
 }
 
-async function accumulateValuesPartOne() {
+async function calibrationValueOne() {
   try {
     const data = await readInputFromFile()
     return data?.reduce((total, curr) => {
@@ -48,12 +39,13 @@ async function accumulateValuesPartOne() {
   }
 }
 
-async function accumulateValuesPartTwo() {
+async function calibrationValueTwo() {
   try {
     const data = await readInputFromFile()
     return data?.reduce((total, curr) => {
-      const formatNumbers = stripNonNumbers(curr)
-      const bookends = getBookends(stripNonDigits(formatNumbers))
+      const formatNumbers = convertNumberStringToNumber(curr)
+      const strip = stripNonDigits(formatNumbers)
+      const bookends = getBookends(strip)
       return total + Number(bookends)
     }, 0)
   } catch (error) {
@@ -61,5 +53,5 @@ async function accumulateValuesPartTwo() {
   }
 }
 
-accumulateValuesPartOne().then(console.log)
-accumulateValuesPartTwo().then(console.log)
+calibrationValueOne().then(console.log)
+calibrationValueTwo().then(console.log)
